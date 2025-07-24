@@ -1,0 +1,11 @@
+.git
+.gitignore
+.vscode
+.idea
+node_modules
+npm-debug.log*
+Dockerfile
+docker-compose.yml
+dist
+out-tsc
+README.md
