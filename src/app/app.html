@@ -1,0 +1,49 @@
+<h1>Productos de la Panadería</h1>
+
+<!-- Productos -->
+<div *ngIf="cargando" class="loading">Cargando productos...</div>
+
+<div class="productos" *ngIf="!cargando">
+  <div class="card" *ngFor="let p of productos">
+    <h2>{{ p.nombre }}</h2>
+    <p class="precio">${{ p.precio }}</p>
+    <p>{{ p.descripcion }}</p>
+    <button (click)="agregarProducto(p)">Agregar</button>
+  </div>
+</div>
+
+<hr>
+
+<!-- Carrito -->
+<h2>Carrito de Pedido</h2>
+<div *ngIf="carrito.length === 0" class="empty-cart">No hay productos en el carrito.</div>
+
+<ul *ngIf="carrito.length > 0" class="cart-list">
+  <li *ngFor="let item of carrito">
+    <span>{{ obtenerNombreProducto(item.producto_id) }}</span> 
+    <span>Cantidad: {{ item.cantidad }}</span>
+    <div class="cart-actions">
+      <button class="btn-cart" (click)="quitarProducto(item)">-</button>
+      <button class="btn-cart" (click)="incrementarCantidad(item.producto_id)">+</button>
+    </div>
+  </li>
+</ul>
+
+<div *ngIf="carrito.length > 0" class="total">
+  <strong>Total:</strong> ${{ calcularTotal() | number: '1.2-2' }}
+</div>
+
+<div class="pedido" *ngIf="carrito.length > 0">
+  <label for="cliente">Nombre del Cliente:</label>
+  <input id="cliente" [(ngModel)]="cliente" placeholder="Ingresa tu nombre" />
+
+  <button class="btn-primary" (click)="generarPedido()">Generar Pedido</button>
+</div>
+
+<!-- Modal de mensajes -->
+<div class="modal-overlay" *ngIf="mensaje">
+  <div class="modal">
+    <h3>{{ mensaje }}</h3>
+    <button class="btn-primary" (click)="cerrarModal()">Cerrar</button>
+  </div>
+</div>
