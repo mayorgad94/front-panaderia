@@ -32,7 +32,7 @@ export class App implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<Producto[]>('http://localhost:3000/productos').subscribe({
+    this.http.get<Producto[]>('https://api-panaderia-648693421230.europe-west4.run.app/productos').subscribe({
       next: (data) => {
         this.productos = data;
         this.cargando = false;
@@ -83,7 +83,7 @@ export class App implements OnInit {
       productos: this.carrito
     };
 
-    this.http.post('http://localhost:3000/pedido', pedido).subscribe({
+    this.http.post('https://api-panaderia-648693421230.europe-west4.run.app/pedido', pedido).subscribe({
       next: () => {
         this.carrito = [];   // Limpiar carrito
         this.cliente = '';   // Limpiar nombre
