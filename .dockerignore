@@ -1,11 +1,6 @@
+# Ignora los artefactos de desarrollo local que no deben ir en la imagen.
+# La carpeta 'dist' NO se ignora aquí, porque la genera el paso de build
+# en Cloud Build y SÍ la necesitamos en el contexto de Docker.
 .git
 .gitignore
-.vscode
-.idea
 node_modules
-npm-debug.log*
-Dockerfile
-docker-compose.yml
-dist
-out-tsc
-README.md
